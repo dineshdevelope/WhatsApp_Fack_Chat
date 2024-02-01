@@ -2,8 +2,29 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const [meg, setMeg] = useState("");
+
+  const [messages, setMessages] = useState([
+    { user: "Kumar Nkl", text: "Hi Dinesh, How are you?", time: "01:45AM" },
+  ]);
+
+  const [count, setCount] = useState("");
+
   const EnteredMeg = (e) => {
     setMeg(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (meg.trim() !== "") {
+      const newMessage = {
+        user: "User",
+        text: meg,
+        time: "Now",
+      };
+
+      setMessages([...messages, newMessage]);
+      setMeg("");
+    }
   };
 
   return (
@@ -91,55 +112,43 @@ const Header = () => {
           </li>
         </ul>
 
-        <div class="flex items-center px-3 py-3 space-x-4 hover:bg-green-100 cursor-pointer">
-          <div>
-            <img
-              src="https://ui-avatars.com/api/?name=Deepak Kumar&background=random&color=fff"
-              alt="Deepak Kumar"
-              class="rounded-full"
-            />
-          </div>
-          <div class="flex-1">
-            <h4 class="font-semibold">Deepak Kumar</h4>
-            <p class="text-gray-600 text-sm">Hi Dinesh, How are you?</p>
-          </div>
-          <div class="flex flex-col items-center space-y-1">
-            <span class="text-green-700 font-medium text-sm"> 01:45AM</span>
-            <span class="w-6 h-6 p-2 rounded-full text-sm bg-green-700 flex items-center text-white font-semibold">
-              4
-            </span>
-          </div>
-        </div>
-        <div class="flex items-center px-3 py-3 space-x-4 hover:bg-green-100 cursor-pointer">
-          <div>
-            <img
-              src="https://ui-avatars.com/api/?name=User&background=random&color=fff"
-              alt="User"
-              class="rounded-full"
-            />
-          </div>
-          <div class="flex-1">
-            <h4 class="font-semibold">User</h4>
-            <p class="text-gray-600 text-sm">{meg}</p>
-          </div>
-          <div class="flex flex-col items-center space-y-1 pr-2">
-            <span class="text-green-700 font-medium text-sm">
-              {meg.length === 0 ? "" : "Now"}
-            </span>
-            <span class="w-6 h-6 p-2 rounded-full text-sm bg-green-700 flex items-center text-white font-semibold">
-              {meg.length === 0 ? "" : 1}
-            </span>
-          </div>
+        <div className="space-y-4 m-5">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className="flex items-center px-3 py-3 space-x-4 hover:bg-green-100 cursor-pointer"
+            >
+              <div>
+                <img
+                  src={`https://ui-avatars.com/api/?name=${message.user}&background=random&color=fff`}
+                  alt={message.user}
+                  className="rounded-full"
+                />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold">{message.user}</h4>
+                <p className="text-gray-600 text-sm">{message.text}</p>
+              </div>
+              <div className="flex flex-col items-center space-y-1 pr-2">
+                <span className="text-green-700 font-medium text-sm">
+                  {message.time}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
 
+        {/* Input form for sending messages */}
         <div className="space-x-5 m-5">
-          <input
-            type="text"
-            className="bg-gray-300 rounded p-2 text-black font-serif outline-none w-full "
-            placeholder="Enter your message"
-            autoFocus
-            onChange={EnteredMeg}
-          />
+          <form action="" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="bg-gray-300 rounded p-2 text-black font-serif outline-none w-full "
+              placeholder="Enter your message"
+              value={meg}
+              onChange={EnteredMeg}
+            />
+          </form>
         </div>
 
         <div class="py-3 text-green-900 flex justify-center">
