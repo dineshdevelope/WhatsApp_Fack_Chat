@@ -170,7 +170,7 @@ const Header = () => {
           <div>
             <p class="text-xs">
               Your personal messages are
-              <span class="text-emerald-900">end-to-end encrypted</span>
+              <span class="text-emerald-900"> end-to-end encrypted</span>
             </p>
           </div>
         </div>
