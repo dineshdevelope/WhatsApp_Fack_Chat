@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 const Header = () => {
   const [meg, setMeg] = useState("");
+
+  const [user, setUser] = useState("User");
 
   const [messages, setMessages] = useState([
     { user: "Kumar Nkl", text: "Hi Dinesh, How are you?", time: "01:45AM" },
@@ -17,9 +20,9 @@ const Header = () => {
     e.preventDefault();
     if (meg.trim() !== "") {
       const newMessage = {
-        user: "User",
+        user: user,
         text: meg,
-        time: "Now",
+        time: format(new Date(), "hh:mm a"),
       };
 
       setMessages([...messages, newMessage]);
@@ -28,14 +31,14 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <div className="p-4">
       <section class="bg-white max-w-md mx-auto">
         <div class="bg-emerald-700 text-white px-3 py-5 flex items-center justify-between">
           <h4 class="font-semibold">WhatsApp</h4>
 
           <div class="flex items-center space-x-2">
             <a
-              href="https://github.com/dineshdevelope/WhatsApp-UI"
+              href="https://github.com/dineshdevelope/WhatsApp_Fack_Chat"
               target="_blank"
             >
               <svg
@@ -138,7 +141,6 @@ const Header = () => {
           ))}
         </div>
 
-        {/* Input form for sending messages */}
         <div className="space-x-5 m-5">
           <form action="" onSubmit={handleSubmit}>
             <input

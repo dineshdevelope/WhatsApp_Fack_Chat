@@ -1,11 +1,19 @@
 const MenuPage = () => {
   return (
     <>
-      <div className="bg-green-500 text-white p-5 font-semibold text-center">
-        This Is Menu Page
-      </div>
-      <div className="bg-green-600 text-white p-5 font-semibold text-center">
-        working under progress
+      <div className="flex items-center justify-between px-5 p-2">
+        <button className="bg-gray-400 hover:bg-gray-500 p-3 rounded-xl text-white font-semibold">
+          <a
+            href="https://github.com/dineshdevelope/WhatsApp_Fack_Chat"
+            target="blank"
+          >
+            GitHub
+          </a>
+        </button>
+        <p className="text-md">
+          You can contribute by submitting pull requests from your fork to the
+          upstream repository. For more information, see "Fork a repository."
+        </p>
       </div>
     </>
   );
